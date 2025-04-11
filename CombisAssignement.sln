@@ -1,0 +1,33 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "combisassignement.client", "combisassignement.client\combisassignement.client.esproj", "{5F9474AB-517D-D07D-EE6B-D4F32675EB7C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombisAssignement.Server", "CombisAssignement.Server\CombisAssignement.Server.csproj", "{4E1DD49C-AEAB-4C02-B9E6-0FC9BBAF2740}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5F9474AB-517D-D07D-EE6B-D4F32675EB7C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F9474AB-517D-D07D-EE6B-D4F32675EB7C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F9474AB-517D-D07D-EE6B-D4F32675EB7C}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{5F9474AB-517D-D07D-EE6B-D4F32675EB7C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F9474AB-517D-D07D-EE6B-D4F32675EB7C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F9474AB-517D-D07D-EE6B-D4F32675EB7C}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{4E1DD49C-AEAB-4C02-B9E6-0FC9BBAF2740}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E1DD49C-AEAB-4C02-B9E6-0FC9BBAF2740}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E1DD49C-AEAB-4C02-B9E6-0FC9BBAF2740}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E1DD49C-AEAB-4C02-B9E6-0FC9BBAF2740}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAA5556D-4AA5-417D-AC05-08C67B218C63}
+	EndGlobalSection
+EndGlobal
