@@ -1,0 +1,30 @@
+# Step 1: Use the .NET SDK image to build the app
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+
+# Set the working directory in the container
+WORKDIR /app
+
+# Copy the .csproj file and restore any dependencies (via NuGet)
+COPY CombisAssignement.Api/*.csproj ./CombisAssignement.Api/
+RUN dotnet restore
+
+# Copy the rest of the application files into the container
+COPY . ./
+
+# Build the application and publish it to a directory
+RUN dotnet publish CombisAssignement.Api/CombisAssignement.Api.csproj -c Release -o /app/publish
+
+# Step 2: Use the .NET runtime image to run the app
+FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the published app from the build container
+COPY --from=build /app/publish .
+
+# Expose the port the app will run on
+EXPOSE 80
+
+# Define the entry point for the application
+ENTRYPOINT ["dotnet", "CombisAssignement.Api.dll"]
