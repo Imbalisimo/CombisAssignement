@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197 d17.13
+VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombisAssignement.Server", "CombisAssignement.Server\CombisAssignement.Server.csproj", "{4E1DD49C-AEAB-4C02-B9E6-0FC9BBAF2740}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombisAssignment.EFCore", "CombisAssignment.EFCore\CombisAssignment.EFCore.csproj", "{2F9AC39F-7AAC-4A45-AEBC-249FCE416E9C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombisAssignment.Core", "CombisAssignment.Core\CombisAssignment.Core.csproj", "{6CAC8898-0D4E-4774-B473-C768E50960DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CombisAssignment.Infrastructure", "CombisAssignment.Infrastructure\CombisAssignment.Infrastructure.csproj", "{6F36C102-B58A-4923-8B40-4E0E105D46C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{6CAC8898-0D4E-4774-B473-C768E50960DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CAC8898-0D4E-4774-B473-C768E50960DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CAC8898-0D4E-4774-B473-C768E50960DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F36C102-B58A-4923-8B40-4E0E105D46C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F36C102-B58A-4923-8B40-4E0E105D46C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F36C102-B58A-4923-8B40-4E0E105D46C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F36C102-B58A-4923-8B40-4E0E105D46C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

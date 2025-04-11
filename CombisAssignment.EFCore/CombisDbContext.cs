@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CombisAssignment.Core
 {
-    public class AppDbContext : DbContext
+    public class CombisDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
 
