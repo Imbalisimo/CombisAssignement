@@ -1,4 +1,6 @@
-﻿using CombisAssignment.Application.Auth.DTOs;
+﻿using CombisAssignment.Application.Auth;
+using CombisAssignment.Application.Auth.DTOs;
+using CombisAssignment.Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -11,36 +13,30 @@ namespace CombisAssignement.Server.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        [HttpPost("login")]
-        public IActionResult Login([FromBody] LoginRequestDto request)
+        private readonly IAuthService _authService;
+
+        public AuthController(IAuthService authService)
         {
-            // Dummy check — replace with real user validation
-            if (request.Username == "admin" && request.Password == "password")
+            _authService = authService;
+        }
+
+        [HttpPost("login")]
+        public async Task<IActionResult> LoginAsync([FromBody] LoginRequestDto request)
+        {
+            var token = await _authService.Login(request);
+
+            if (token != null)
             {
-                var claims = new[]
-                {
-                new Claim(ClaimTypes.Name, request.Username),
-                new Claim(ClaimTypes.Role, "Admin") // Add role claim here
-            };
-
-                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("this_is_your_super_secret_key_123!"));
-                var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
-
-                var token = new JwtSecurityToken(
-                    issuer: "yourapi",
-                    audience: "yourapi_users",
-                    claims: claims,
-                    expires: DateTime.UtcNow.AddHours(1),
-                    signingCredentials: creds
-                );
-
-                return Ok(new
-                {
-                    token = new JwtSecurityTokenHandler().WriteToken(token)
-                });
+                return Ok(token);
             }
 
             return Unauthorized();
+        }
+
+        [HttpPost("Register")]
+        public async Task<bool> RegisterUserAsync(string name, string email, string password)
+        {
+            return await _authService.RegisterUserAsync(name, email, password);
         }
     }
 }

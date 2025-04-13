@@ -1,6 +1,11 @@
+using CombisAssignment.Application.Auth.Settings;
 using CombisAssignment.Application.User;
+using CombisAssignment.Core;
 using CombisAssignment.Core.Interfaces;
 using CombisAssignment.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
@@ -8,6 +13,7 @@ using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 var jwtSettings = builder.Configuration.GetSection("JwtSettings");
+builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("JwtSettings"));
 builder.Services.AddAuthentication("Bearer")
     .AddJwtBearer("Bearer", options =>
     {
@@ -24,6 +30,8 @@ builder.Services.AddAuthentication("Bearer")
     });
 
 // Add services to the container.
+builder.Services.AddDbContext<CombisDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("CombisConnection")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
 

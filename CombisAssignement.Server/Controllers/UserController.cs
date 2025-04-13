@@ -1,5 +1,6 @@
 ﻿using CombisAssignment.Application.User;
 using CombisAssignment.Application.User.DTOs;
+using CombisAssignment.Core.Constants;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -47,7 +48,7 @@ namespace CombisAssignement.Server.Controllers
             return NoContent();
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = RoleNames.Admin)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(Guid id)
         {
