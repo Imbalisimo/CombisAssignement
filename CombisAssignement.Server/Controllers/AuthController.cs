@@ -20,7 +20,11 @@ namespace CombisAssignement.Server.Controllers
             _authService = authService;
         }
 
-        [HttpPost("login")]
+        [HttpGet("InCaseYouWantToSeeItWorking")]
+        public string HashPassword(string password) =>
+            BCrypt.Net.BCrypt.HashPassword(password);
+
+        [HttpPost("Login")]
         public async Task<IActionResult> LoginAsync([FromBody] LoginRequestDto request)
         {
             var token = await _authService.Login(request);
