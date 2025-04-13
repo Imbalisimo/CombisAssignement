@@ -1,3 +1,4 @@
+using CombisAssignment.Application.Auth;
 using CombisAssignment.Application.Auth.Settings;
 using CombisAssignment.Application.User;
 using CombisAssignment.Core;
@@ -34,6 +35,9 @@ builder.Services.AddDbContext<CombisDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CombisConnection")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddSingleton<ILoginAttemptService, LoginAttemptService>();
+builder.Services.AddMemoryCache();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

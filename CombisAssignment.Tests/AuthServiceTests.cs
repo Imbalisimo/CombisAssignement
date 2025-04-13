@@ -22,11 +22,13 @@ namespace CombisAssignment.Tests
     public class AuthServiceTests
     {
         private readonly Mock<IUserRepository> _userRepoMock;
+        private readonly Mock<ILoginAttemptService> _loginAttemptMock;
         private readonly AuthService _authService;
 
         public AuthServiceTests()
         {
             _userRepoMock = new Mock<IUserRepository>();
+            _loginAttemptMock = new Mock<ILoginAttemptService>();
 
             var jwtSettings = new JwtSettings
             {
@@ -37,7 +39,7 @@ namespace CombisAssignment.Tests
             };
 
             var options = Options.Create(jwtSettings);
-            _authService = new AuthService(_userRepoMock.Object, options);
+            _authService = new AuthService(_userRepoMock.Object, options, _loginAttemptMock.Object);
         }
 
         [Fact]

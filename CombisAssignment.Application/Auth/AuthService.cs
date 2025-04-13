@@ -18,18 +18,34 @@ namespace CombisAssignment.Application.Auth
     {
         private readonly IUserRepository _userRepository;
         private readonly JwtSettings _jwtSettings;
+        private readonly ILoginAttemptService _rateLimitingService;
 
-        public AuthService(IUserRepository userRepo, IOptions<JwtSettings> jwtSettings)
+        public AuthService(
+            IUserRepository userRepo,
+            IOptions<JwtSettings> jwtSettings,
+            ILoginAttemptService rateLimitingService
+            )
         {
             _userRepository = userRepo;
             _jwtSettings = jwtSettings.Value;
+            _rateLimitingService = rateLimitingService;
         }
 
         public async Task<string?> Login(LoginRequestDto request)
         {
+            if (_rateLimitingService.IsBlocked(request.Email))
+            {
+                throw new UnauthorizedAccessException("Account locked.");
+            }
+
             var user = await _userRepository.GetByEmailAsync(request.Email);
             if (user == null || !VerifyPassword(request.Password, user.Password))
+            {
+                _rateLimitingService.RecordFailedAttempt(request.Email);
                 throw new UnauthorizedAccessException("Invalid credentials");
+            }
+
+            _rateLimitingService.RecordSuccessfulAttempt(request.Email);
 
             return GenerateToken(user);
         }
