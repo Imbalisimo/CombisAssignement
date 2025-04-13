@@ -35,6 +35,7 @@ builder.Services.AddDbContext<CombisDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("CombisConnection")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
 builder.Services.AddSingleton<ILoginAttemptService, LoginAttemptService>();
 builder.Services.AddMemoryCache();
